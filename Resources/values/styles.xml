@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+	
+	<style name="AlertDialogRoundedCornersTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+		<item name="materialAlertDialogTitlePanelStyle">@style/TitlePanelCenter</item>
+		<item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyle</item>
+		<item name="shapeAppearanceMediumComponent">@style/RoundShapeAppearance</item>
+	</style>
+
+	<style name="TitlePanelCenter" parent="MaterialAlertDialog.MaterialComponents.Title.Panel">
+		<item name="android:gravity">center_horizontal</item>
+	</style>
+
+	<style name="TitleTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+		<!-- Just bold the Title.Text-->
+		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="RoundShapeAppearance" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+		<item name="cornerFamily">rounded</item>
+		<item name="cornerSize">16dp</item>
+	</style>
+	
+</resources>
