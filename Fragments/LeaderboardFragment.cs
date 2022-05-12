@@ -57,7 +57,7 @@ namespace com.companyname.NavigationGraph3.Fragments
 
             NavController navController = Navigation.FindNavController(Activity, Resource.Id.nav_host);
             
-            // Always Navigate back to the SlideShowFragment
+            // Navigate back to the SlideShowFragment
             navController.PopBackStack(Resource.Id.slideshow_fragment, false);
             navController.Navigate(Resource.Id.slideshow_fragment, null, navOptions);
         }

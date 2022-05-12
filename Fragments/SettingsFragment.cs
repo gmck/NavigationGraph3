@@ -29,12 +29,12 @@ namespace com.companyname.NavigationGraph3.Fragments
             if (PreferenceScreen.FindPreference("darkTheme") is CheckBoxPreference checkboxDarkThemePreference)
                 checkboxDarkThemePreference.PreferenceChange += CheckboxDarkThemePreference_PreferenceChange;
 
-            colorThemeListPreference = PreferenceScreen.FindPreference("colorThemeValue") as ColorThemeListPreference;
-            if (colorThemeListPreference != null)
+            if (PreferenceScreen.FindPreference("colorThemeValue") is ColorThemeListPreference colorThemeListPreference)
             {
                 colorThemeListPreference.Init();
                 colorThemeListPreference.PreferenceChange += ColorThemeListPreference_PreferenceChange;
             }
+
         }
 
         private void CheckboxDarkThemePreference_PreferenceChange(object sender, Preference.PreferenceChangeEventArgs e)
@@ -46,7 +46,7 @@ namespace com.companyname.NavigationGraph3.Fragments
 
         private void ColorThemeListPreference_PreferenceChange(object sender, Preference.PreferenceChangeEventArgs e)
         {
-            ColorThemeListPreference colorThemeListPreference = (ColorThemeListPreference)e.Preference;
+            colorThemeListPreference = e.Preference as ColorThemeListPreference;
             
             ISharedPreferencesEditor editor = colorThemeListPreference.SharedPreferences.Edit();
             editor.PutString("colorThemeValue", e.NewValue.ToString()).Apply();

@@ -39,7 +39,9 @@ namespace com.companyname.NavigationGraph3
         // Ian Lake
         //https://medium.com/androiddevelopers/why-would-i-want-to-fitssystemwindows-4e26d9ce1eec
 
-
+        // Theming - Material for Android
+        //https://material.io/develop/android
+        
         // Theming articles. Android styling: themes vs styles - Nick Butcher
         //https://medium.com/androiddevelopers/android-styling-themes-vs-styles-ebe05f917578
 
@@ -57,7 +59,6 @@ namespace com.companyname.NavigationGraph3
 
         // Dark Theme - Chris Banes - Dark Theme with MDC
         //https://medium.com/androiddevelopers/dark-theme-with-mdc-4c6fc357d956
-
 
         // Android Design System and Theming: Colors. Hugo Matilla
         //https://www.hugomatilla.com/blog/android-design-system-and-theming-colors/
@@ -97,8 +98,6 @@ namespace com.companyname.NavigationGraph3
             NavigationUI.SetupActionBarWithNavController(this, navController, appBarConfiguration);
             NavigationUI.SetupWithNavController(bottomNavigationView, navController);
 
-            // NavigationUI.SetupWithNavController(navigationView, navController); - Commented out compared to NavigationGraph1
-            // SetNavigationItemSelectedListener replaces it, so now we are responsible for the code in OnNavigationItemSelected
             navigationView.SetNavigationItemSelectedListener(this);
 
             // Add the DestinationChanged listener
@@ -154,7 +153,9 @@ namespace com.companyname.NavigationGraph3
         #region OnSupportNavigationUp
         public override bool OnSupportNavigateUp()
         {
-            // Prevent standard behavior if the fragment which has an up button (left arrow) and you don't want to go back to the home fragment. See OnDestinationChanged for an alternative method
+            // Prevent standard behavior if the fragment which has an up button (left arrow) and you don't want to go back to the home fragment.
+            // See OnDestinationChanged for an alternative method
+            
             //if (navController.CurrentDestination.Id == Resource.Id.leaderboard || navController.CurrentDestination.Id == Resource.Id.register)
             //{
             //    navController.PopBackStack(Resource.Id.nav_slideshow, false);
@@ -243,7 +244,7 @@ namespace com.companyname.NavigationGraph3
 
             CheckForPreferenceChanges();
 
-            // The first menu item is not checked by default, so we need to check it to show it is selected on the startDestination fragment
+            // The first menu item is not checked by default, so we need to check it to show it is selected on the startDestination fragment.
             navigationView.Menu.FindItem(Resource.Id.home_fragment).SetChecked(navDestination.Id == Resource.Id.home_fragment);
 
             if (navDestination.Id == Resource.Id.home_fragment)

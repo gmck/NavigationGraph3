@@ -57,7 +57,7 @@ namespace com.companyname.NavigationGraph3.Fragments
 
             NavController navController = Navigation.FindNavController(Activity, Resource.Id.nav_host);
 
-            // Here we navigate back to the home_fragment
+            // Navigate back to the home_fragment
             navController.PopBackStack(Resource.Id.home_fragment, false);
             navController.Navigate(Resource.Id.home_fragment,null, navOptions);
         }

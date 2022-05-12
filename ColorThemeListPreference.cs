@@ -22,7 +22,7 @@ namespace com.companyname.NavigationGraph3
         }
         #endregion
 
-        internal void Init()
+        public void Init()
         {
             // This is called from the SettingsFragment, just to update the Summary. It wont be called again each time OnCreateDialogview is called.
             // Therefore we need to call FindIndexByValue again in OnCreateDialogView

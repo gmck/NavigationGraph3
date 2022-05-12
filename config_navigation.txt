@@ -18180,9 +18180,9 @@
 -printseeds seeds.txt
 -printusage usage.txt
 
-#usage.txt - this file contains the code that was removed from the apk
-#seeds.txt - this file has a list of classes and class members which were not obfuscated
-#mappings.txt - this file provides the translation between the original and the obfuscated classes, methods, field names. Not applicable to xamarin, because we don't obfuscate.
+#usage.txt - this file contains the code that was removed or unused code from the apk
+#seeds.txt - this file has a list of classes and class members which were not removed according to your keep rules 
+#mappings.txt - this file provides the translation between the original and the obfuscated classes, methods, field names. Not applicable to xamarin, because we don't obfuscate. However required by Google Play see notes at end
 
 # Added 20/06/2021 To upload a mapping.txt file
 #Open the Play Console.
@@ -18211,7 +18211,7 @@
 
 # added this after changing to Android 10 (Q)
 -keep class androidx.preference.internal.PreferenceImageView
-# added after adding Conectivity.Monitor which optionally calls SnackBar
+# added after adding Connectivity.Monitor which optionally calls SnackBar
 -keep class com.google.android.material.snackbar.Snackbar$SnackbarLayout
 
 
@@ -18825,27 +18825,6 @@
 # Referenced at res/layout/preference_recyclerview.xml:18
 -keep class androidx.recyclerview.widget.RecyclerView { <init>(...); }
 
-# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\xml\preferences.xml:1
--keep class com.companyname.NavigationGraph3.ColorThemeListPreference { <init>(...); }
-
-# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
--keep class com.companyname.navigationgraph3.fragments.GalleryFragment { <init>(...); }
-
-# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
--keep class com.companyname.navigationgraph3.fragments.HomeFragment { <init>(...); }
-
-# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
--keep class com.companyname.navigationgraph3.fragments.LeaderboardFragment { <init>(...); }
-
-# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
--keep class com.companyname.navigationgraph3.fragments.RegisterFragment { <init>(...); }
-
-# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
--keep class com.companyname.navigationgraph3.fragments.SettingsFragment { <init>(...); }
-
-# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
--keep class com.companyname.navigationgraph3.fragments.SlideshowFragment { <init>(...); }
-
 # Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\layout\app_bar_main.xml:1
 -keep class com.google.android.material.appbar.AppBarLayout { <init>(...); }
 
@@ -18934,6 +18913,27 @@
 
 # Referenced at res/layout/material_timepicker_dialog.xml:46
 -keep class com.google.android.material.timepicker.TimePickerView { <init>(...); }
+
+# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
+-keep class crc640acaa35a60f11c94.GalleryFragment { <init>(...); }
+
+# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
+-keep class crc640acaa35a60f11c94.HomeFragment { <init>(...); }
+
+# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
+-keep class crc640acaa35a60f11c94.LeaderboardFragment { <init>(...); }
+
+# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
+-keep class crc640acaa35a60f11c94.RegisterFragment { <init>(...); }
+
+# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
+-keep class crc640acaa35a60f11c94.SettingsFragment { <init>(...); }
+
+# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\navigation\nav_graph.xml:1
+-keep class crc640acaa35a60f11c94.SlideshowFragment { <init>(...); }
+
+# Referenced at C:\ProjectsVS2022Preview\NavigationGraph3\obj\Release\120\res\xml\preferences.xml:1
+-keep class crc6493e5d5d3ffda93b6.ColorThemeListPreference { <init>(...); }
 
 
 # End of content from obj\Release\120\aapt_rules.txt
