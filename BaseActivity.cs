@@ -8,7 +8,7 @@ namespace com.companyname.NavigationGraph3
 {
     [Activity(Label = "BaseActivity")]
     public class BaseActivity : AppCompatActivity
-    {
+    { 
         protected ISharedPreferences sharedPreferences;
         private string currentTheme;
         
@@ -18,6 +18,7 @@ namespace com.companyname.NavigationGraph3
 
             sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(this);
             currentTheme = sharedPreferences.GetString("colorThemeValue", "1");
+            
             SetAppTheme(currentTheme);
         }
 

@@ -14,8 +14,45 @@ using Google.Android.Material.Navigation;
 
 namespace com.companyname.NavigationGraph3
 {
+    #region References
+    // A couple of pertinent articles from two of Google's Android Developers re WindowInsets
+    // Chris Banes
+    //https://medium.com/androiddevelopers/windowinsets-listeners-to-layouts-8f9ccc8fa4d1
+    // Ian Lake
+    //https://medium.com/androiddevelopers/why-would-i-want-to-fitssystemwindows-4e26d9ce1eec
+
+    // Theming - Material for Android
+    //https://material.io/develop/android
+
+    // Theming articles. Android styling: themes vs styles - Nick Butcher
+    //https://medium.com/androiddevelopers/android-styling-themes-vs-styles-ebe05f917578
+
+    // Android Styling: prefer theme attributes - Nick Butcher
+    //https://medium.com/androiddevelopers/android-styling-prefer-theme-attributes-412caa748774
+
+    // Theming articles - Nick Rout
+    //https://medium.com/androiddevelopers/migrating-to-material-components-for-android-ec6757795351
+
+    // Material Theming with MDC - Nick Rout
+    //https://medium.com/androiddevelopers/material-theming-with-mdc-color-860dbba8ce2f
+
+    // Theming articles - Shivam Dhuria
+    //https://proandroiddev.com/a-quick-guide-for-using-material-components-in-android-7d8783b7fb08
+
+    // Dark Theme - Chris Banes - Dark Theme with MDC
+    //https://medium.com/androiddevelopers/dark-theme-with-mdc-4c6fc357d956
+
+    // Android Design System and Theming: Colors. Hugo Matilla
+    //https://www.hugomatilla.com/blog/android-design-system-and-theming-colors/
+    #endregion
+
+    //adb tcpip 5555
+    //adb connect 192.168.1.116:5555 for the old S8
     [Activity(Label = "@string/app_name", Theme = "@style/Theme.NavigationGraph.RedBmw", MainLauncher = true)]
-    public class MainActivity : BaseActivity, NavController.IOnDestinationChangedListener, NavigationView.IOnNavigationItemSelectedListener, IOnApplyWindowInsetsListener
+    public class MainActivity : BaseActivity, IOnApplyWindowInsetsListener,
+                                NavController.IOnDestinationChangedListener,
+                                NavigationBarView.IOnItemSelectedListener,
+                                NavigationView.IOnNavigationItemSelectedListener
     {
         internal readonly string logTag = "GLM - MainActivity";
 
@@ -31,38 +68,6 @@ namespace com.companyname.NavigationGraph3
         private bool devicesWithNotchesAllowFullScreen;             // allow full screen for devices with notches
         private bool nightModeActive;                               // dark theme is active or not.
         private bool animateFragments;                              // animate fragments 
-
-
-        // A couple of pertinent articles from two of Google's Android Developers re WindowInsets
-        // Chris Banes
-        //https://medium.com/androiddevelopers/windowinsets-listeners-to-layouts-8f9ccc8fa4d1
-        // Ian Lake
-        //https://medium.com/androiddevelopers/why-would-i-want-to-fitssystemwindows-4e26d9ce1eec
-
-        // Theming - Material for Android
-        //https://material.io/develop/android
-        
-        // Theming articles. Android styling: themes vs styles - Nick Butcher
-        //https://medium.com/androiddevelopers/android-styling-themes-vs-styles-ebe05f917578
-
-        // Android Styling: prefer theme attributes - Nick Butcher
-        //https://medium.com/androiddevelopers/android-styling-prefer-theme-attributes-412caa748774
-
-        // Theming articles - Nick Rout
-        //https://medium.com/androiddevelopers/migrating-to-material-components-for-android-ec6757795351
-
-        // Material Theming with MDC - Nick Rout
-        //https://medium.com/androiddevelopers/material-theming-with-mdc-color-860dbba8ce2f
-
-        // Theming articles - Shivam Dhuria
-        //https://proandroiddev.com/a-quick-guide-for-using-material-components-in-android-7d8783b7fb08
-
-        // Dark Theme - Chris Banes - Dark Theme with MDC
-        //https://medium.com/androiddevelopers/dark-theme-with-mdc-4c6fc357d956
-
-        // Android Design System and Theming: Colors. Hugo Matilla
-        //https://www.hugomatilla.com/blog/android-design-system-and-theming-colors/
-
 
         #region OnCreate
         protected override void OnCreate(Bundle savedInstanceState)
@@ -96,12 +101,46 @@ namespace com.companyname.NavigationGraph3
             appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinationIds).SetOpenableLayout(drawerLayout).Build();  // SetDrawerLayout replaced with SetOpenableLayout
 
             NavigationUI.SetupActionBarWithNavController(this, navController, appBarConfiguration);
-            NavigationUI.SetupWithNavController(bottomNavigationView, navController);
 
+            // Notes using both Navigation.Fragment and Navigation.UI version 2.3.5.3. Navigation.UI therefore includes Android.Material 1.4.0.4
+            // These two are working, but no animation, other than when the two fragments opened from slideshowFragment close, made possible because of HandleBackPressed(NavOptions navOptions)
+            // Could fix by adding animation to the graph, but that limits the app to only one type of animation. Therefore replacing with SetNavigationItemSelectedListener 
+            // That solves the problem of animating the top level fragments, but opening both fragments via the BottomNavigationView still have no animation.
+            // So will replace NavigationUI.SetupWithNavController(bottomNavigationView, navController) with BottomNavigationView_ItemSelected
+
+            //NavigationUI.SetupWithNavController(navigationView, navController);
+            //NavigationUI.SetupWithNavController(bottomNavigationView, navController);
+
+            // Upgrading to Navigation.Fragment and Navigation.UI version 2.4.2. Navigation.UI includes now Android.Material 1.5.0.2 - also tested 1.6.0
             navigationView.SetNavigationItemSelectedListener(this);
+            bottomNavigationView.SetOnItemSelectedListener(this);
+            //bottomNavigationView.ItemSelected += BottomNavigationView_ItemSelected;       // Alternate event handler which works for bottomNavigationView
+
+
+
+
 
             // Add the DestinationChanged listener
             navController.AddOnDestinationChangedListener(this);
+
+            // Demonstrates the problem if using 2.3.5.3 versions of Navigation and 1.4.0.4 of Material respectively
+            // Already using both overloads of SetupWithNavController() and there is no provision to pass a NavOptions. Since there is no animation contained in nav_graph therefore no animation when
+            // opening any fragment. 
+            // The only animation is in closing the fragments as each fragment has a HandleBackPressed(NavOptions navOptions)
+            // Therefore to get animation we had to drop NavigationUI.SetupWithNavController(navigationView, navController) and use navigationView.SetNavigationItemSelectedListener(this) which allows creating our
+            // own NavOptions. At this point each fragment can be potentially animated both opening and closing.
+            // Test: comment out NavigationUI.SetupWithNavController(navigationView, navController) and uncomment navigationView.SetNavigationItemSelectedListener(this);
+            // Works as per the requirement with a choice of animations, controlled via a preference. The ugly slider animation makes checking the animation of each fragment animation easier to view.
+
+            // Upgrade Navigation packages to latest available. 2.4.2 will include material 1.5.0.2
+            // Clean, Rebuild Deploy. All seems ok until you try and open either of the BottomNavigationView Fragments after it has already been opened once. Will not open again without first closing
+            // the SlideshowFragment and then opening it again and either fragment will open, but only the one time.
+            // Attempts to fix.
+            // Comment out NavigationUI.SetupWithNavController(bottomNavigationView, navController) and uncomment bottomNavigationView.ItemSelected, which works
+            // It would appear that there is a problem with Xamarin.Google.Android.Material 1.5.0.2 
+            // Next step was to add Xamarin.Google.Android.Material 1.6.0 
+            // No change from 1.5.0.2 behavior - work arounds work as before.
+
         }
         #endregion
 
@@ -153,16 +192,6 @@ namespace com.companyname.NavigationGraph3
         #region OnSupportNavigationUp
         public override bool OnSupportNavigateUp()
         {
-            // Prevent standard behavior if the fragment which has an up button (left arrow) and you don't want to go back to the home fragment.
-            // See OnDestinationChanged for an alternative method
-            
-            //if (navController.CurrentDestination.Id == Resource.Id.leaderboard || navController.CurrentDestination.Id == Resource.Id.register)
-            //{
-            //    navController.PopBackStack(Resource.Id.nav_slideshow, false);
-            //    navController.Navigate(Resource.Id.nav_slideshow/*, null, navOptions*/);
-            //    return true;
-            //}
-
             return NavigationUI.NavigateUp(navController, appBarConfiguration) || base.OnSupportNavigateUp();
         }
         #endregion
@@ -182,6 +211,48 @@ namespace com.companyname.NavigationGraph3
             }
             return base.OnOptionsItemSelected(item);
         }
+        #endregion
+
+        #region BottomNavigationView_ItemSelected
+        private void BottomNavigationView_ItemSelected(object sender, NavigationBarView.ItemSelectedEventArgs e)
+        {
+            if (!animateFragments)
+                AnimationResource.Fader2();
+            else
+                AnimationResource.Slider();
+
+            NavOptions navOptions = new NavOptions.Builder()
+                    .SetLaunchSingleTop(true)
+                    .SetEnterAnim(AnimationResource.EnterAnimation)
+                    .SetExitAnim(AnimationResource.ExitAnimation)
+                    .SetPopEnterAnim(AnimationResource.PopEnterAnimation)
+                    .SetPopExitAnim(AnimationResource.PopExitAnimation)
+                    .Build();
+
+            bool proceed = false;
+
+            switch (e.Item.ItemId)
+            {
+                case Resource.Id.leaderboard_fragment:
+                case Resource.Id.register_fragment:
+                    proceed = true;
+                    break;
+
+                default:
+                    break;
+            }
+            if (proceed)
+                navController.Navigate(e.Item.ItemId, null, navOptions);
+
+        }
+        #endregion
+
+        #region NavigationBarView.IOnItemSelectedListener.OnNavigationItemSelected
+        // 
+        //bool NavigationBarView.IOnItemSelectedListener.OnNavigationItemSelected(IMenuItem item)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
         #endregion
 
         #region OnNavigationItemSelected
@@ -212,23 +283,31 @@ namespace com.companyname.NavigationGraph3
                 case Resource.Id.home_fragment:
                 case Resource.Id.gallery_fragment:
                 case Resource.Id.slideshow_fragment:
+
+                // These two are not top level fragments, these fragments are opened via the BottomNavigationView, not the NavigationView yet they still come through here. 
+                // You need to observe how the event handler works e.g. NavigationBarView.IOnItemSelectedListener.OnNavigationItemSelected(IMenuItem item) which leads back to here.
+                // Note that BottomNavigationView inherits from NavigationBarView which is an abstract class.
+                case Resource.Id.leaderboard_fragment:
+                case Resource.Id.register_fragment:
+                    
                     proceed = true;
                     break;
 
                 default:
                     break;
             }
-            // We have the option here of animating our toplevel destinations. If we don't want animation comment out the NavOptions or just rely on NavigationUI.OnNavDestinationSelected.
+            // We have the option here of animating our toplevel destinations. If we don't want animation comment out the NavOptions. 
             bool handled = false;
             if (proceed)
             {
-                navController.Navigate(menuItem.ItemId, null, navOptions);
+                // I don't want to animate these two.
+                if (menuItem.ItemId == Resource.Id.leaderboard_fragment || menuItem.ItemId == Resource.Id.register_fragment)
+                    navController.Navigate(menuItem.ItemId/*, null, navOptions*/); // uncomment if you want to try it or just get rid of the if else
+                else
+                    navController.Navigate(menuItem.ItemId, null, navOptions);
+
                 handled = true;
             }
-
-            if (!handled)
-                //Default behavior as if we didn't use OnNavigationItemSelected
-                handled = NavigationUI.OnNavDestinationSelected(menuItem, Navigation.FindNavController(this, Resource.Id.nav_host)) || base.OnOptionsItemSelected(menuItem);
 
             if (drawerLayout.IsDrawerOpen(GravityCompat.Start))
                 drawerLayout.CloseDrawer(GravityCompat.Start);
@@ -292,7 +371,6 @@ namespace com.companyname.NavigationGraph3
             // TODO: Make a note in our user Guide.
             #endregion
 
-
             if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
                 Window.Attributes.LayoutInDisplayCutoutMode = devicesWithNotchesAllowFullScreen ? LayoutInDisplayCutoutMode.ShortEdges : LayoutInDisplayCutoutMode.Default;
         }
@@ -301,9 +379,7 @@ namespace com.companyname.NavigationGraph3
         #region CheckForPreferenceChanges
         private void CheckForPreferenceChanges()
         {
-            // Check if anything has been changed in the Settings Fragment before re-reading and updating all the preference variables
-            //ISharedPreferences sharedPreferences= PreferenceManager.GetDefaultSharedPreferences(this);
-
+            // Check if anything has been changed in the Settings Fragment before re-reading and updating the preference variables
             sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(this);
             nightModeActive = sharedPreferences.GetBoolean("darkTheme", false);
             devicesWithNotchesAllowFullScreen = sharedPreferences.GetBoolean("devicesWithNotchesAllowFullScreen", false);
@@ -324,6 +400,26 @@ namespace com.companyname.NavigationGraph3
             }
         }
         #endregion
-
     }
 }
+
+// Java version of bottomNavigationView.setOnItemSelectedListener
+//bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item)
+//{
+//    int id = item.getItemId();
+//    switch (id)
+//    {
+//        //check id
+//    }
+//    return true;
+//}
+//    });
+//Kotlin:
+//bnv.setOnItemSelectedListener {
+//    item->
+//            when(item.itemId) {
+//    }
+//    true
+//}

@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProguardConfiguration Include="proguard.cfg" />
+    <None Include="NavigationGraph.docx" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\drawable\audi_blue.webp" />
@@ -96,7 +97,10 @@
     <AndroidResource Include="Resources\drawable\green_vehicle1.webp" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\ic_launcher_background.xml" />
+    <AndroidResource Include="Resources\navigation\nav_graph.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher_round.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
@@ -119,15 +123,21 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.4.1" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.4.1.1" />
+    <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen">
+      <Version>1.0.0-beta02</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment">
-      <Version>2.3.5.3</Version>
+      <Version>2.4.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Navigation.UI">
-      <Version>2.3.5.3</Version>
+      <Version>2.4.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Preference">
-      <Version>1.2.0</Version>
+      <Version>1.2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.Material">
+      <Version>1.6.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -194,18 +204,6 @@
     <AndroidResource Include="Resources\values-night\themes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\anim\slide_in_left.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values\anim\slide_in_right.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values\anim\slide_out_left.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values\anim\slide_out_right.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\values\attrs.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +213,10 @@
     <AndroidResource Include="Resources\values\dimens.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\values\ic_launcher_background.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -224,12 +226,20 @@
     <AndroidResource Include="Resources\values\themes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\navigation\nav_graph.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\xml\preferences.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\anim\slide_in_left.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\anim\slide_in_right.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\anim\slide_out_left.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\anim\slide_out_right.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
