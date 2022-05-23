@@ -14,8 +14,8 @@
 	
 	<!--Preferences.xml-->
 	<string name ="generalCategoryTitle">General</string>
-	<string name="use_dark_theme">Use Dark Theme</string>
-	<string name="use_dark_theme_summary">Check to use Dark Theme.</string>
+	<string name="use_dark_theme">Dark Theme</string>
+	<string name="use_dark_theme_summary">Only available on devices running Android 10 and above. Check to use Dark Theme.</string>
 	<string name ="colorThemeListPreferenceTitle">Choose Colour Theme</string>
 	<string name ="colorThemeListPreferenceDialogTitle">Select which colour theme to use</string>
 	<string name ="colorThemeListPreferenceSummary">Select colour theme</string>

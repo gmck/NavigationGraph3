@@ -27,7 +27,12 @@ namespace com.companyname.NavigationGraph3.Fragments
             SetPreferencesFromResource(Resource.Xml.preferences, rootKey);
 
             if (PreferenceScreen.FindPreference("darkTheme") is CheckBoxPreference checkboxDarkThemePreference)
-                checkboxDarkThemePreference.PreferenceChange += CheckboxDarkThemePreference_PreferenceChange;
+            {
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                    checkboxDarkThemePreference.PreferenceChange += CheckboxDarkThemePreference_PreferenceChange;
+                else
+                    checkboxDarkThemePreference.Enabled = false;
+            }
 
             if (PreferenceScreen.FindPreference("colorThemeValue") is ColorThemeListPreference colorThemeListPreference)
             {
@@ -47,10 +52,10 @@ namespace com.companyname.NavigationGraph3.Fragments
         private void ColorThemeListPreference_PreferenceChange(object sender, Preference.PreferenceChangeEventArgs e)
         {
             colorThemeListPreference = e.Preference as ColorThemeListPreference;
-            
+
             ISharedPreferencesEditor editor = colorThemeListPreference.SharedPreferences.Edit();
             editor.PutString("colorThemeValue", e.NewValue.ToString()).Apply();
-            
+
             int index = Convert.ToInt16(e.NewValue.ToString());
             string colorThemeValue = colorThemeListPreference.GetEntries()[index - 1];
             colorThemeListPreference.Summary = (index != -1) ? colorThemeValue : colorThemeListPreference.DefaultThemeValue;
