@@ -66,13 +66,15 @@ namespace com.companyname.NavigationGraph3
 
         // Preferences variables - see OnDestinationChanged where it is checked
         private bool devicesWithNotchesAllowFullScreen;             // allow full screen for devices with notches
-        private bool nightModeActive;                               // dark theme is active or not.
         private bool animateFragments;                              // animate fragments 
 
         #region OnCreate
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            // Only for demonstration purposes in that you can easily see the background color and the launch icon
+            //System.Threading.Thread.Sleep(2000);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -326,8 +328,9 @@ namespace com.companyname.NavigationGraph3
             // The first menu item is not checked by default, so we need to check it to show it is selected on the startDestination fragment.
             navigationView.Menu.FindItem(Resource.Id.home_fragment).SetChecked(navDestination.Id == Resource.Id.home_fragment);
 
-            if (navDestination.Id == Resource.Id.home_fragment)
-                AppCompatDelegate.DefaultNightMode = nightModeActive ? AppCompatDelegate.ModeNightYes : AppCompatDelegate.ModeNightNo;
+            // Decided this wasn't required as we now have it in BaseActivity
+            //if (navDestination.Id == Resource.Id.home_fragment)
+            //    AppCompatDelegate.DefaultNightMode = nightModeActive ? AppCompatDelegate.ModeNightYes : AppCompatDelegate.ModeNightNo;
 
             if (navDestination.Id == Resource.Id.slideshow_fragment)
             {
@@ -381,7 +384,6 @@ namespace com.companyname.NavigationGraph3
         {
             // Check if anything has been changed in the Settings Fragment before re-reading and updating the preference variables
             sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(this);
-            nightModeActive = sharedPreferences.GetBoolean("darkTheme", false);
             devicesWithNotchesAllowFullScreen = sharedPreferences.GetBoolean("devicesWithNotchesAllowFullScreen", false);
             animateFragments = sharedPreferences.GetBoolean("use_animations", false);
         }
