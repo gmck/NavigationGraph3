@@ -14,11 +14,21 @@
 	
 	<!--Preferences.xml-->
 	<string name ="generalCategoryTitle">General</string>
+	
 	<string name="use_dark_theme">Dark Theme</string>
-	<string name="use_dark_theme_summary">Only available on devices running Android 10 and above. Check to use Dark Theme.</string>
+	<string name="use_dark_theme_summary">For older devices running less than Android 10 - Check to use Dark Theme.</string>
+
+	<!--<string name="use_dark_theme">Use Dark Theme</string>
+	<string name="use_dark_theme_summary">Check to use Dark Theme.</string>-->
+	
 	<string name ="colorThemeListPreferenceTitle">Choose Colour Theme</string>
 	<string name ="colorThemeListPreferenceDialogTitle">Select which colour theme to use</string>
-	<string name ="colorThemeListPreferenceSummary">Select colour theme</string>
+	<string name ="colorThemeListPreferenceSummary">Select color theme</string>
+
+	<!--<string name ="systemThemeListPreferenceTitle">Choose System Theme</string>
+	<string name ="systemThemeListPreferenceDialogTitle">Select System theme</string>
+	<string name ="systemThemeListPreferenceSummary">Select System theme</string>-->
+	
 	<string name="use_animations">Use Screen animations</string>
 	<string name="use_animations_summary">Animate the transition from one screen to another of all the screens associated with the side menu</string>
 	<string name="devicesWithNotchesAllowFullscreen">Devices with Notches/Cutouts allow full screen display</string>

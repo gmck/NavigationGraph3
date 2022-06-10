@@ -4,8 +4,8 @@
 # compiler_hash: engineering
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.0"}
-# pg_map_id: d55dfcc
-# pg_map_hash: SHA-256 d55dfcc29d3440808ab0ec3c867e70265232909aa088706c2bf63a80194564c2
+# pg_map_id: 59f0b49
+# pg_map_hash: SHA-256 59f0b4962afe999d83fc6c27e32a581a1ac31781070a0673afeaa273b9c2ac67
 android.runtime.JavaProxyThrowable -> android.runtime.JavaProxyThrowable:
     14:14:void <clinit>() -> <clinit>
     20:22:void <init>() -> <init>
@@ -9656,8 +9656,6 @@ androidx.core.splashscreen.SplashScreen$Impl -> androidx.core.splashscreen.Splas
     348:368:void displaySplashScreenIcon(android.view.View,android.graphics.drawable.Drawable) -> displaySplashScreenIcon
     235:235:void access$setMSplashScreenViewProvider$p(androidx.core.splashscreen.SplashScreen$Impl,androidx.core.splashscreen.SplashScreenViewProvider) -> getActivity
     235:235:android.app.Activity getActivity():235 -> getActivity
-    240:240:void setHasBackground(boolean) -> getHasBackground
-    240:240:boolean getHasBackground():240 -> getHasBackground
     242:242:boolean splashScreenWaitPredicate$lambda-0() -> getSplashScreenWaitPredicate
     242:242:androidx.core.splashscreen.SplashScreen$KeepOnScreenCondition getSplashScreenWaitPredicate():242 -> getSplashScreenWaitPredicate
     247:271:void install() -> install
@@ -26559,13 +26557,12 @@ crc640acaa35a60f11c94.SlideshowFragment -> crc640acaa35a60f11c94.SlideshowFragme
     64:64:void onDestroy() -> onDestroy
     56:56:void onResume() -> onResume
 crc6493e5d5d3ffda93b6.BaseActivity -> crc6493e5d5d3ffda93b6.BaseActivity:
-    16:16:void <clinit>() -> <clinit>
-    22:24:void <init>() -> <init>
-    30:32:void <init>(int) -> <init>
-    54:56:void monodroidAddReference(java.lang.Object) -> monodroidAddReference
-    61:62:void monodroidClearReferences() -> monodroidClearReferences
-    38:38:void onCreate(android.os.Bundle) -> onCreate
-    46:46:void onResume() -> onResume
+    15:15:void <clinit>() -> <clinit>
+    21:23:void <init>() -> <init>
+    29:31:void <init>(int) -> <init>
+    45:47:void monodroidAddReference(java.lang.Object) -> monodroidAddReference
+    52:53:void monodroidClearReferences() -> monodroidClearReferences
+    37:37:void onCreate(android.os.Bundle) -> onCreate
 crc6493e5d5d3ffda93b6.BasicDialogFragment -> crc6493e5d5d3ffda93b6.BasicDialogFragment:
     15:15:void <clinit>() -> <clinit>
     21:23:void <init>() -> <init>
@@ -30567,7 +30564,7 @@ mono.MonoPackageManager -> mono.MonoPackageManager:
     152:152:java.lang.String getNativeLibraryPath(android.content.pm.ApplicationInfo) -> getNativeLibraryPath
     130:133:boolean isEmulator() -> isEmulator
 mono.MonoPackageManager_Resources -> mono.MonoPackageManager_Resources:
-    3:30:void <clinit>() -> <clinit>
+    3:31:void <clinit>() -> <clinit>
 mono.MonoRuntimeProvider -> mono.MonoRuntimeProvider:
     9:9:void <init>() -> <init>
     22:37:void attachInfo(android.content.Context,android.content.pm.ProviderInfo) -> attachInfo
@@ -32367,6 +32364,12 @@ mono.androidx.appcompat.widget.Toolbar_OnMenuItemClickListenerImplementor -> mon
     38:40:void monodroidAddReference(java.lang.Object) -> monodroidAddReference
     45:46:void monodroidClearReferences() -> monodroidClearReferences
     30:30:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+mono.androidx.core.splashscreen.SplashScreen_OnExitAnimationListenerImplementor -> mono.androidx.core.splashscreen.SplashScreen_OnExitAnimationListenerImplementor:
+    16:16:void <clinit>() -> <clinit>
+    22:24:void <init>() -> <init>
+    38:40:void monodroidAddReference(java.lang.Object) -> monodroidAddReference
+    45:46:void monodroidClearReferences() -> monodroidClearReferences
+    30:30:void onSplashScreenExit(androidx.core.splashscreen.SplashScreenViewProvider) -> onSplashScreenExit
 mono.androidx.core.view.ActionProvider_SubUiVisibilityListenerImplementor -> mono.androidx.core.view.ActionProvider_SubUiVisibilityListenerImplementor:
     16:16:void <clinit>() -> <clinit>
     22:24:void <init>() -> <init>

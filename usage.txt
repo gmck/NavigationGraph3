@@ -3184,6 +3184,7 @@ androidx.core.splashscreen.SplashScreen$Impl:
     public final java.lang.Integer getBackgroundColor()
     public final java.lang.Integer getBackgroundResId()
     public final int getFinalThemeId()
+    public final boolean getHasBackground()
     public final android.graphics.drawable.Drawable getIcon()
     public final void setBackgroundColor(java.lang.Integer)
     public final void setBackgroundResId(java.lang.Integer)

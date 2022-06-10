@@ -3,12 +3,6 @@
 
 	<!--RED BMW THEME-->
 
-	<!--<style name="Theme.NavigationGraph.RedBmw.Starting" parent="Theme.SplashScreen">
-		<item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
-		<item name="windowSplashScreenBackground">@color/black</item>
-		<item name="postSplashScreenTheme">@style/Theme.NavigationGraph.RedBmw</item>
-	</style>-->
-	
 	<style name="Theme.NavigationGraph.RedBmw" parent="Theme.NavigationGraph.RedBmw.Base">
 
 		<!--Vehicle Image-->
@@ -41,7 +35,9 @@
 
 		<item name="colorOnBackground">@color/white</item>
 		<item name="android:colorBackground">@color/black</item>
-
+		
+		<!--<item name="android:windowBackground">?android:colorBackground</item>-->
+		
 		<!-- Status bar color. -->
 		<!-- Gmail does this -->
 		<item name="android:statusBarColor" tools:targetApi="l">@color/black</item>

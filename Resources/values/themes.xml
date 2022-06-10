@@ -1,6 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+	<!--SPLASH SCREEN THEME-->
+	
+	<style name="Theme.NavigationGraph.RedBmw.Starting" parent="Theme.SplashScreen">
+		
+		<!--
+			By default if windowSplashScreenAnimatedIcon is not availaible, then your normal app icon is used. But only on Android 12
+			Lower than Android 12 - you get the default Android icon which is probably not what you want.
+		-->
+		<item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
+
+		<!--
+			By default if you don't supply a windowSplashScreenBackground - then the default will be white for Dark theme Off and black for Dark theme On
+			If you do supply a colour then that colour will be the same colour for both Theme Dark and Dark Theme off 
+		-->
+		
+		<!--<item name="windowSplashScreenBackground">@color/red_700_light</item>-->				<!--This Works - but can't use ?attr/colorSecondary here -->
+		<!--<item name="windowSplashScreenBackground">?android:colorBackground</item>-->			<!-- Ok too -->
+		
+		
+		<!--
+			You do need at minimum a postSplashScreenTheme
+		-->
+		
+		<item name="postSplashScreenTheme">@style/Theme.NavigationGraph.RedBmw</item>
+	
+	</style>
+
+	
+	
 	<!--RED BMW THEME-->
 
 	<style name="Theme.NavigationGraph.RedBmw" parent="Theme.NavigationGraph.RedBmw.Base">
@@ -34,8 +63,11 @@
 		<item name="colorOnError">@color/white</item>
 
 		<item name="colorOnBackground">@color/black</item>
+		
 		<item name="android:colorBackground">@color/white</item>
-
+		
+		<!--<item name="android:windowBackground">?android:colorBackground</item>-->
+		
 		<!-- Status bar color. -->
 		<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 

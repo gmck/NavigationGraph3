@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Views;
-using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
 using AndroidX.Core.View;
 using AndroidX.DrawerLayout.Widget;
@@ -48,7 +47,7 @@ namespace com.companyname.NavigationGraph3
 
     //adb tcpip 5555
     //adb connect 192.168.1.116:5555 for the old S8
-    [Activity(Label = "@string/app_name", Theme = "@style/Theme.NavigationGraph.RedBmw", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : BaseActivity, IOnApplyWindowInsetsListener,
                                 NavController.IOnDestinationChangedListener,
                                 NavigationBarView.IOnItemSelectedListener,
@@ -71,10 +70,12 @@ namespace com.companyname.NavigationGraph3
         #region OnCreate
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            AndroidX.Core.SplashScreen.SplashScreen.InstallSplashScreen(this);
+
             base.OnCreate(savedInstanceState);
 
-            // Only for demonstration purposes in that you can easily see the background color and the launch icon
-            //System.Threading.Thread.Sleep(2000);
+            // Only for demonstration purposes in that you can easily see the background color and the launch icon. Remove for production build.
+            //System.Threading.Thread.Sleep(500);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -117,9 +118,6 @@ namespace com.companyname.NavigationGraph3
             navigationView.SetNavigationItemSelectedListener(this);
             bottomNavigationView.SetOnItemSelectedListener(this);
             //bottomNavigationView.ItemSelected += BottomNavigationView_ItemSelected;       // Alternate event handler which works for bottomNavigationView
-
-
-
 
 
             // Add the DestinationChanged listener

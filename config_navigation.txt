@@ -6572,12 +6572,6 @@
 }
 
 # ACW for Xamarin.AndroidX.Core.SplashScreen
--keep class androidx.core.splashscreen.SplashScreen$Companion
--keepclassmembers class androidx.core.splashscreen.SplashScreen$Companion {
-   <init>(...);
-   *** installSplashScreen(...);
-}
-
 -keep class androidx.core.splashscreen.SplashScreen$KeepOnScreenCondition
 -keepclassmembers class androidx.core.splashscreen.SplashScreen$KeepOnScreenCondition {
 }
@@ -12211,6 +12205,9 @@
 -keep class androidx.core.view.WindowInsetsControllerCompat$OnControllableInsetsChangedListener { *; }
 -keep class mono.androidx.core.view.WindowInsetsControllerCompat_OnControllableInsetsChangedListenerImplementor { *; }
 -keep class androidx.core.view.accessibility.AccessibilityViewCommand { *; }
+-keep class androidx.core.splashscreen.SplashScreen$KeepOnScreenCondition { *; }
+-keep class androidx.core.splashscreen.SplashScreen$OnExitAnimationListener { *; }
+-keep class mono.androidx.core.splashscreen.SplashScreen_OnExitAnimationListenerImplementor { *; }
 -keep class androidx.customview.widget.Openable { *; }
 -keep class androidx.drawerlayout.widget.DrawerLayout$DrawerListener { *; }
 -keep class mono.androidx.drawerlayout.widget.DrawerLayout_DrawerListenerImplementor { *; }
