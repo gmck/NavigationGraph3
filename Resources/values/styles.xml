@@ -1,4 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+	<style name="Theme.NavigationGraph.RedBmw.Starting" parent="Theme.SplashScreen">
+
+		<!--
+			By default if windowSplashScreenAnimatedIcon is not availaible, then your normal app icon is used. But only on Android 12
+			Lower than Android 12 - you get the default Android icon which is probably not what you want.
+		-->
+		<!--<item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>-->
+		<item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_round</item>
+		<!--
+			By default if you don't supply a windowSplashScreenBackground - then the default will be white for Dark theme Off and black for Dark theme On
+			If you do supply a colour then that colour will be the same colour for both Theme Dark and Dark Theme off
+			Using ?android:colorBackground also allows for a black background in dark mode and white background in light mode.
+		-->
+		<item name="windowSplashScreenBackground">?android:colorBackground</item>
+
+		<!--
+			You do need at minimum a postSplashScreenTheme
+		-->
+		<item name="postSplashScreenTheme">@style/Theme.NavigationGraph.RedBmw</item>
+
+	</style>
 	
 	<style name="AlertDialogRoundedCornersTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
 		<item name="materialAlertDialogTitlePanelStyle">@style/TitlePanelCenter</item>

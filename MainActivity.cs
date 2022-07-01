@@ -75,7 +75,7 @@ namespace com.companyname.NavigationGraph3
             base.OnCreate(savedInstanceState);
 
             // Only for demonstration purposes in that you can easily see the background color and the launch icon. Remove for production build.
-            //System.Threading.Thread.Sleep(500);
+            //System.Threading.Thread.Sleep(5000);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);

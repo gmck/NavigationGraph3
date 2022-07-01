@@ -8,7 +8,7 @@ namespace com.companyname.NavigationGraph3
     {
         internal readonly string DefaultSystemThemeValue = "Select System Theme";
         internal string[] themeEntries = { "System Default", "Light", "Dark" };
-        internal string[] themeValues = { "1", "2", "3" };
+        //internal string[] themeValues = { "1", "2", "3" };
         //internal string[] themeValues = {"0", "1", "2" };  // equivelent to UiNightMode.Auto, No and Yes
 
         #region Ctors
